@@ -1,0 +1,388 @@
+/* ─── DESIGN SYSTEM: ref.digital AESTHETIC ─── */
+
+:root {
+  /* Strict 3-Color Format Palette */
+  --color-bg: #050505;          /* 1. Deep Midnight Black */
+  --color-bg-dark: #000000;
+  --color-text: #F3F1EF;        /* 2. Minimalist Off-White */
+  --color-text-dark: #F3F1EF;
+  --color-border: rgba(243, 241, 239, 0.08);
+  --color-border-dark: rgba(243, 241, 239, 0.08);
+  
+  /* Accents */
+  --color-green: #EEFFA8;       /* 3. Vibrant Lime Green Accent */
+  
+  /* Greige tones adapted for dark mode */
+  --color-greige-100: #080809;
+  --color-greige-200: #0F0F10;
+  --color-greige-400: #1C1C1E;
+  --color-greige-600: #8E8A85;
+  --color-greige-800: #C4BAB0;
+
+  /* Typography Stack */
+  --font-serif: 'Syne', sans-serif;
+  --font-sans: 'DM Sans', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+
+  /* Layout */
+  --grid-margin: clamp(1rem, 4vw, 3rem);
+  --header-height: 70px;
+}
+
+/* Base resets & theme defaults */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  overflow-x: hidden;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Noise overlay for premium paper texture */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  background-image: url("/noise.svg");
+  opacity: 0.28;
+  pointer-events: none;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-greige-400);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-green);
+}
+
+/* Dynamic theme transitions */
+.page-theme-container {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  transition: background-color 0.8s cubic-bezier(0.76, 0, 0.24, 1), 
+              color 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+  min-height: 100vh;
+}
+
+.page-theme-container.theme-dark {
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-dark);
+}
+
+/* Blueprint vertical & horizontal grids */
+.blueprint-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.grid-line-v {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: var(--color-border);
+  opacity: 0.6;
+  transition: background-color 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.theme-dark .grid-line-v {
+  background-color: var(--color-border-dark);
+}
+
+/* Brackets animation on hover */
+.hover-bracket-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.hover-bracket-link::before,
+.hover-bracket-link::after {
+  position: absolute;
+  top: 0;
+  opacity: 0;
+  font-family: var(--font-mono);
+  font-weight: 300;
+  color: var(--color-green);
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  pointer-events: none;
+}
+
+.hover-bracket-link::before {
+  content: "[";
+  left: -0.6rem;
+  transform: translateX(0.4rem);
+}
+
+.hover-bracket-link::after {
+  content: "]";
+  right: -0.6rem;
+  transform: translateX(-0.4rem);
+}
+
+.hover-bracket-link:hover {
+  color: var(--color-green);
+}
+
+.theme-dark .hover-bracket-link:hover {
+  color: var(--color-green);
+}
+
+.hover-bracket-link:hover::before,
+.hover-bracket-link:hover::after {
+  opacity: 1;
+  transform: translateX(0);
+  color: inherit;
+}
+
+/* Folder skewed tabs */
+.folder-tab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 32px;
+  padding: 0 1.2rem;
+  background-color: var(--color-greige-200);
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  color: var(--color-text);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  border-bottom: none;
+  z-index: 2;
+  transition: background-color 0.8s cubic-bezier(0.76, 0, 0.24, 1), 
+              color 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.folder-tab::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 16px;
+  height: 100%;
+  background-color: inherit;
+  transform: skewX(24deg);
+  transform-origin: bottom left;
+  border-top-right-radius: 4px;
+}
+
+.theme-dark .folder-tab {
+  background-color: #35302E;
+  color: var(--color-text-dark);
+}
+
+/* Editorial Typography */
+.editorial-title {
+  font-family: var(--font-serif);
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: clamp(2.2rem, 7vw, 6.0rem);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+}
+
+.editorial-h2 {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(1.8rem, 4.5vw, 3.2rem);
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+}
+
+.editorial-italic-span {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  color: var(--color-green);
+}
+
+.mono-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Page Loader (Curtain) */
+.curtain-loader {
+  position: fixed;
+  inset: 0;
+  background-color: var(--color-bg-dark);
+  z-index: 10000;
+  transform-origin: top;
+}
+
+/* Custom Cursor */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--color-text);
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: var(--color-bg);
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+  transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease, border-radius 0.3s ease;
+}
+
+.custom-cursor.hovering-link {
+  width: 16px;
+  height: 16px;
+  background-color: var(--color-green);
+  color: var(--color-bg-dark);
+}
+
+.custom-cursor.hovering-project {
+  width: 70px;
+  height: 70px;
+  background-color: var(--color-green);
+  color: var(--color-bg-dark);
+  font-size: 10px;
+}
+
+.custom-cursor.hovering-drag {
+  width: 60px;
+  height: 60px;
+  background-color: var(--color-green);
+  color: #fff;
+  font-size: 9px;
+}
+
+/* Hide default cursor on desktop when using custom cursor */
+@media (hover: hover) and (pointer: fine) {
+  .custom-cursor-active, 
+  .custom-cursor-active * {
+    cursor: none !important;
+  }
+}
+
+/* Infinite Marquee */
+.infinite-marquee {
+  display: flex;
+  overflow: hidden;
+  white-space: nowrap;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  padding: 1rem 0;
+  width: 100%;
+}
+
+.infinite-marquee-content {
+  display: inline-flex;
+  animation: marquee 25s linear infinite;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Grid Cell Borders */
+.grid-cell {
+  border: 1px solid var(--color-border);
+  transition: border-color 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.theme-dark .grid-cell {
+  border-color: var(--color-border-dark);
+}
+
+/* Form inputs matching the blueprint layout */
+.blueprint-input-group {
+  position: relative;
+  border: 1px solid var(--color-border);
+  background: transparent;
+  width: 100%;
+  transition: border-color 0.3s ease;
+}
+
+.blueprint-input-group:focus-within {
+  border-color: var(--color-green);
+}
+
+.theme-dark .blueprint-input-group:focus-within {
+  border-color: var(--color-green);
+}
+
+.blueprint-input-group label {
+  position: absolute;
+  top: 0.6rem;
+  left: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  color: var(--color-greige-600);
+}
+
+.blueprint-input-group input,
+.blueprint-input-group textarea {
+  width: 100%;
+  padding: 1.8rem 1rem 0.8rem;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  outline: none;
+}
+
+/* Floating Thumbnail for Project Rows */
+.floating-thumbnail {
+  position: fixed;
+  width: 280px;
+  height: 160px;
+  border-radius: 4px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1000;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--color-border);
+  transform: translate(-50%, -50%);
+}
