@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence, useSpring, useMotionValue } from "framer-motion";
 
 // ─── UTILITIES & HOOKS ──────────────────────────────────────────────────────
@@ -265,6 +266,7 @@ function AmbientGlows() {
 function Navbar() {
   const clock = useClock();
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -279,40 +281,109 @@ function Navbar() {
   }, []);
 
   return (
-    <nav className={`nav-bar-air ${scrolled ? "scrolled" : ""}`}>
-      <a href="#hero" className="nav-wordmark">
-        RAJATH O S
-      </a>
+    <>
+      <nav className={`nav-bar-air ${scrolled ? "scrolled" : ""} ${menuOpen ? "menu-open" : ""}`}>
+        <a href="#hero" className="nav-wordmark" onClick={() => setMenuOpen(false)}>
+          RAJATH O S
+        </a>
 
-      <div className="nav-menu nav-links-container">
-        {["About", "Skills", "Projects", "Education"].map(item => (
-          <a key={item} href={`#${item.toLowerCase()}`} className="nav-link">
-            {item}
+        <div className="nav-menu nav-links-container">
+          {["About", "Skills", "Projects", "Education"].map(item => (
+            <a key={item} href={`#${item.toLowerCase()}`} className="nav-link">
+              {item}
+            </a>
+          ))}
+        </div>
+
+        <div className="nav-right-container" style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+          <span className="pulse-live-dot desktop-only-dot" />
+          
+          <span className="air-caption clock-span" style={{ opacity: 0.8, fontFamily: "monospace", fontWeight: "bold" }}>
+            LIVE // {clock || "00:00:00 PM"}
+          </span>
+          
+          <a 
+            href="https://drive.google.com/file/d/17GBGLCzu9BwmZLYxAdkFQRlzdRQQW75M/view?usp=drive_link" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="ghost-btn-charcoal nav-btn-resume"
+          >
+            Resume ↓
           </a>
-        ))}
-      </div>
+          
+          <a href="#contact" className="action-pill nav-btn-contact">
+            Contact
+          </a>
+        </div>
 
-      <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-        <span className="pulse-live-dot" />
-        
-        <span className="air-caption clock-span" style={{ opacity: 0.8, fontFamily: "monospace", fontWeight: "bold" }}>
-          LIVE // {clock || "00:00:00 PM"}
-        </span>
-        
-        <a 
-          href="https://drive.google.com/file/d/17GBGLCzu9BwmZLYxAdkFQRlzdRQQW75M/view?usp=drive_link" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="ghost-btn-charcoal"
+        {/* Hamburger Toggle Button (mobile only) */}
+        <button 
+          className="nav-hamburger" 
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle navigation menu"
+          aria-expanded={menuOpen}
         >
-          Resume ↓
-        </a>
-        
-        <a href="#contact" className="action-pill">
-          Contact
-        </a>
-      </div>
-    </nav>
+          <span className={`hamburger-line ${menuOpen ? "open" : ""}`} />
+          <span className={`hamburger-line ${menuOpen ? "open" : ""}`} />
+          <span className={`hamburger-line ${menuOpen ? "open" : ""}`} />
+        </button>
+      </nav>
+
+      {/* Mobile Drawer Menu Overlay */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div 
+            className="mobile-menu-overlay"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <div className="mobile-menu-links">
+              {["About", "Skills", "Projects", "Education"].map((item, idx) => (
+                <motion.a 
+                  key={item} 
+                  href={`#${item.toLowerCase()}`} 
+                  className="mobile-nav-link"
+                  onClick={() => setMenuOpen(false)}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.05 * idx, duration: 0.3 }}
+                >
+                  {item}
+                </motion.a>
+              ))}
+            </div>
+            
+            <div className="mobile-menu-actions">
+              <a 
+                href="https://drive.google.com/file/d/17GBGLCzu9BwmZLYxAdkFQRlzdRQQW75M/view?usp=drive_link" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="ghost-btn-charcoal mobile-action-btn"
+                onClick={() => setMenuOpen(false)}
+              >
+                Resume ↓
+              </a>
+              <a 
+                href="#contact" 
+                className="action-pill mobile-action-btn"
+                onClick={() => setMenuOpen(false)}
+              >
+                Contact
+              </a>
+            </div>
+
+            <div className="mobile-menu-footer">
+              <span className="pulse-live-dot" />
+              <span className="air-caption" style={{ fontFamily: "monospace", fontWeight: "bold" }}>
+                LIVE // {clock || "00:00:00 PM"}
+              </span>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
 
@@ -331,6 +402,7 @@ function HeroSection() {
   useEffect(() => {
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const smoothX = useSpring(mouseX, { stiffness: 60, damping: 15 });
@@ -922,7 +994,7 @@ function ProjectsCarousel() {
       </div>
 
       {/* Carousel Controls */}
-      <div style={{
+      <div className="carousel-controls" style={{
         position: "relative",
         zIndex: 10,
         display: "flex",
@@ -1478,8 +1550,107 @@ export default function PortfolioRedesign() {
   return (
     <>
       <style>{`
+        /* Hamburger Button */
+        .nav-hamburger {
+          display: none;
+          background: none;
+          border: none;
+          flex-direction: column;
+          gap: 6px;
+          cursor: pointer;
+          padding: 8px;
+          z-index: 600;
+        }
+
+        .hamburger-line {
+          display: block;
+          width: 24px;
+          height: 2px;
+          background-color: var(--color-charcoal-text);
+          border-radius: 2px;
+          transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
+        }
+
+        /* Animate hamburger to X when open */
+        .hamburger-line.open:nth-child(1) {
+          transform: translateY(8px) rotate(45deg);
+        }
+        .hamburger-line.open:nth-child(2) {
+          opacity: 0;
+        }
+        .hamburger-line.open:nth-child(3) {
+          transform: translateY(-8px) rotate(-45deg);
+        }
+
+        /* Mobile Drawer Menu */
+        .mobile-menu-overlay {
+          position: fixed;
+          top: 90px;
+          left: 20px;
+          right: 20px;
+          background-color: rgba(255, 255, 255, 0.96);
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+          border: 1px solid rgba(43, 127, 255, 0.25);
+          border-radius: 24px;
+          padding: 2.5rem 2rem;
+          z-index: 499;
+          display: flex;
+          flex-direction: column;
+          gap: 2rem;
+          box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .mobile-menu-links {
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem;
+          border-bottom: 1px solid rgba(0,0,0,0.06);
+          padding-bottom: 1.5rem;
+        }
+
+        .mobile-nav-link {
+          font-size: 20px;
+          font-weight: 700;
+          color: var(--color-charcoal-text);
+          text-decoration: none;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          transition: color 0.3s;
+        }
+
+        .mobile-nav-link:hover {
+          color: var(--color-action-blue);
+        }
+
+        .mobile-menu-actions {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .mobile-action-btn {
+          width: 100%;
+          text-align: center;
+          padding: 12px 18px !important;
+          box-sizing: border-box;
+        }
+
+        .mobile-menu-footer {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          margin-top: 0.5rem;
+          color: var(--color-charcoal-text);
+          opacity: 0.6;
+        }
+
         /* Responsive CSS overrides for viewport matching */
         @media (max-width: 1024px) {
+          .hero-grid-ref {
+            grid-template-columns: 1fr !important;
+            gap: 3rem !important;
+          }
           .hero-bottom-bar {
             grid-template-columns: 1fr !important;
             gap: 2rem !important;
@@ -1512,15 +1683,53 @@ export default function PortfolioRedesign() {
 
         @media (max-width: 768px) {
           .nav-links-container,
-          .clock-span {
+          .clock-span,
+          .nav-btn-resume,
+          .nav-btn-contact,
+          .desktop-only-dot {
             display: none !important;
+          }
+          .nav-hamburger {
+            display: flex !important;
           }
           .nav-bar-air {
             height: 60px !important;
+            top: 15px !important;
+            width: calc(100% - 30px) !important;
+            padding: 0 20px !important;
+          }
+          .nav-bar-air.scrolled {
+            top: 10px !important;
+          }
+          .mobile-menu-overlay {
+            top: 85px !important;
+            left: 15px !important;
+            right: 15px !important;
+          }
+          .air-display {
+            font-size: clamp(2.5rem, 8vw, 4.5rem) !important;
+          }
+          .hero-meta-row {
+            flex-direction: column;
+            gap: 0.5rem;
+            align-items: center;
+            text-align: center;
           }
           .hero-meta-row > div:nth-child(2),
           .hero-meta-row > div:nth-child(3) {
             display: none !important;
+          }
+          .about-links-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .skills-grid-ref .card-cloud {
+            grid-template-columns: 1fr !important;
+            gap: 16px !important;
+          }
+          .carousel-controls {
+            flex-direction: column !important;
+            gap: 1.5rem !important;
+            align-items: center !important;
           }
           .project-table-header {
             display: none !important;
@@ -1535,7 +1744,8 @@ export default function PortfolioRedesign() {
             display: none !important;
           }
           .edu-details-row {
-            gap: 2rem !important;
+            grid-template-columns: 1fr !important;
+            gap: 1.2rem !important;
           }
           .footer-cols-ref {
             grid-template-columns: 1fr !important;
