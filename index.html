@@ -1,17 +1,560 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/jpeg" href="/favicon.jpg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rajath O S — Move Fast. Build to Last.</title>
-    <!-- Google Fonts: Inter, Oswald, Dancing Script, Space Mono -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Oswald:wght@700;900&family=Dancing+Script:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Rajath O S — Specimen Portfolio</title>
+  <meta name="description" content="Professional portfolio and education specimen of Rajath O S, a Full Stack Developer Intern and Information Science Engineering student. Restrained monochromatic design.">
+  <meta name="keywords" content="Rajath O S, Portfolio, Education, Full Stack Developer, Java, Spring, React, Information Science, Software Engineer, Monochrome UI">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/img/profile-img.png">
+  
+  <!-- Google Fonts: Raleway (Headings/Body), Inter (UI), Playfair Display (Serif) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;700;800&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,300;1,400;1,700&display=swap" rel="stylesheet">
+  
+  <!-- Bootstrap Icons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="obsidian-canvas" data-spy="scroll">
+
+  <!-- Vertical Hairline Grid Blueprint lines -->
+  <div class="lines-wrap">
+    <div class="lines-inner">
+      <div class="lines-grid"></div>
+      <div class="lines-grid"></div>
+      <div class="lines-grid"></div>
+    </div>
+  </div>
+
+  <!-- Mobile Hamburger Menu Button -->
+  <button class="mobile-nav-toggle-btn" id="mobile-nav-toggle-btn" aria-label="Toggle Navigation">
+    <i class="bi bi-list"></i>
+  </button>
+
+  <!-- Mobile Navigation Overlay Drawer -->
+  <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+    <button class="mobile-nav-close-btn" id="mobile-nav-close-btn" aria-label="Close menu">
+      <i class="bi bi-x"></i>
+    </button>
+    <div class="mobile-nav-menu-links">
+      <a href="#home-section" class="mobile-nav-link">Home</a>
+      <a href="#about-section" class="mobile-nav-link">About</a>
+      <a href="#skills-section" class="mobile-nav-link">Skills</a>
+      <a href="#education-section" class="mobile-nav-link">Education</a>
+      <a href="#projects-section" class="mobile-nav-link">Projects</a>
+      <a href="#contact-section" class="mobile-nav-link">Contact</a>
+    </div>
+  </div>
+
+  <!-- Central-Logo Split Navigation Bar -->
+  <nav class="unfold-navbar" id="unfold-navbar">
+    <div class="navbar-container">
+      
+      <!-- Left side links -->
+      <div class="navbar-menu-side side-left">
+        <a href="#home-section" class="nav-item-link active">Home</a>
+        <a href="#about-section" class="nav-item-link">About</a>
+        <a href="#skills-section" class="nav-item-link">Skills</a>
+      </div>
+
+      <!-- Center Logo -->
+      <div class="navbar-logo-center">
+        <a href="#home-section" class="site-logo">Rajath O S<span class="accent-dot">.</span></a>
+      </div>
+
+      <!-- Right side links -->
+      <div class="navbar-menu-side side-right">
+        <a href="#education-section" class="nav-item-link">Education</a>
+        <a href="#projects-section" class="nav-item-link">Projects</a>
+        <a href="#contact-section" class="nav-item-link">Contact</a>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- Content Wrapper -->
+  <div class="site-main-wrapper">
+
+    <!-- Hero Section: Monochrome Dashboard Side-by-Side Cards -->
+    <header class="cover-hero-dashboard" id="home-section">
+      <div class="container grid-container-2 hero-dashboard-grid">
+        
+        <!-- Left Dashboard Card (Profile & Intro) -->
+        <div class="dashboard-card profile-card scroll-reveal">
+          <span class="cursive-serif-intro">Move Fast. Build to Last.</span>
+          <h1 class="dashboard-name">RAJATH O S</h1>
+          <span class="developer-subheading">| Java FullStack Developer</span>
+          
+          <p class="profile-intro-text">Crafting scalable web applications with the MERN stack and Spring Boot. Passionate about clean code and real-world impact.</p>
+          
+          <div class="dashboard-btn-row">
+            <a href="#projects-section" class="btn-explore-pill">Explore Work <i class="bi bi-arrow-right"></i></a>
+            <a href="#contact-section" class="btn-touch-pill">Get in Touch</a>
+          </div>
+        </div>
+
+        <!-- Right Dashboard Card (Mock Terminal System Stats) -->
+        <div class="dashboard-card stats-card scroll-reveal">
+          <div class="stats-card-header">
+            <span class="stats-header-title">SYSTEM_STATS</span>
+            <span class="stats-version-code">v2.4.0</span>
+          </div>
+          
+          <div class="stats-card-body">
+            <div class="terminal-line">
+              <span class="terminal-prompt">$</span> <span class="terminal-cmd">whoami:</span> <span class="terminal-val">rajathos</span>
+            </div>
+            <div class="terminal-line">
+              <span class="terminal-prompt">$</span> <span class="terminal-cmd">status:</span> <span class="terminal-val status-active">ACTIVE_BUILDER</span>
+            </div>
+            <div class="terminal-line">
+              <span class="terminal-prompt">$</span> <span class="terminal-cmd">location:</span> <span class="terminal-val">Bengaluru, IN</span>
+            </div>
+            <div class="terminal-line">
+              <span class="terminal-prompt">$</span> <span class="terminal-cmd">core_stack:</span> <span class="terminal-val">[Java, Spring, MERN, AI]</span>
+            </div>
+          </div>
+          
+          <!-- Bottom Prompt & Image -->
+          <div class="stats-card-footer">
+            <span class="stats-status-indicator">
+              <span class="pulse-dot"></span> Ready to execute incoming commands...
+            </span>
+            <div class="prism-img-container">
+              <img src="assets/img/prism.jpg" alt="Crystal Prism" class="prism-img">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- About Section -->
+    <section class="section-layout" id="about-section">
+      <div class="container grid-container-2">
+        
+        <!-- Left Side Image with offset layout frame -->
+        <div class="photo-frame-col scroll-reveal">
+          <div class="photo-offset-wrapper">
+            <div class="photo-offset-frame"></div>
+            <img src="assets/img/profile-img.png" alt="Rajath O S Profile Photo" class="photo-profile">
+          </div>
+        </div>
+
+        <!-- Right Side Biography -->
+        <div class="bio-text-col scroll-reveal">
+          <span class="section-badge-pre">01 / Biography</span>
+          <h2 class="section-heading">About Me<span class="accent-dot">.</span></h2>
+          
+          <p class="bio-paragraph-intro">Passionate and results-driven Information Science &amp; Engineering student with hands-on experience in full-stack web application development.</p>
+          <p class="bio-paragraph">Skilled in architecting robust backend systems in Java/Spring and crafting interactive, modern user experiences. With a solid academic foundation in Core CS Concepts (OOP, DBMS, DSA) and industry-aligned internship exposure at TAP Academy, I focus on building scalable web projects that solve real-world problems.</p>
+          
+          <!-- Detailed List Details -->
+          <div class="details-checklist">
+            <div class="details-item">
+              <span class="details-label">Degree</span>
+              <span class="details-value">B.E. in Information Science</span>
+            </div>
+            <div class="details-item">
+              <span class="details-label">CGPA</span>
+              <span class="details-value">8.9 / 10.0</span>
+            </div>
+            <div class="details-item">
+              <span class="details-label">Email</span>
+              <span class="details-value">rajathos07@gmail.com</span>
+            </div>
+            <div class="details-item">
+              <span class="details-label">Phone</span>
+              <span class="details-value">+91 8660726402</span>
+            </div>
+            <div class="details-item">
+              <span class="details-label">GitHub</span>
+              <span class="details-value">github.com/rajathos07</span>
+            </div>
+            <div class="details-item">
+              <span class="details-label">Location</span>
+              <span class="details-value">Davangere, KA, India</span>
+            </div>
+          </div>
+
+          <div class="action-row">
+            <a href="#contact-section" class="btn-outline-pill">Get In Touch</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Skills Section: Capabilities Cards Deck & Infinite Ticker -->
+    <section class="section-layout section-bg-charcoal" id="skills-section">
+      <div class="container grid-container-2 core-stack-layout">
+        
+        <!-- Left Column: Titles & Description -->
+        <div class="core-stack-info scroll-reveal">
+          <h2 class="cursive-serif-title">Core Stack &amp; Capabilities.</h2>
+          <p class="core-stack-desc">A curated suite of modern web standards, API protocols, database utilities, and generative AI configurations.</p>
+        </div>
+
+        <!-- Right Column: Horizontal Rounded Cards -->
+        <div class="core-stack-cards-deck">
+          
+          <!-- Card 1 -->
+          <div class="capability-horizontal-card scroll-reveal-card">
+            <div class="capability-card-header">
+              <span class="capability-card-index">01/</span>
+              <span class="capability-card-title">FRONTEND</span>
+            </div>
+            <div class="capability-tags-container">
+              <span class="capability-tag-pill">HTML</span>
+              <span class="capability-tag-pill">CSS</span>
+              <span class="capability-tag-pill">JS</span>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="capability-horizontal-card scroll-reveal-card">
+            <div class="capability-card-header">
+              <span class="capability-card-index">02/</span>
+              <span class="capability-card-title">BACKEND</span>
+            </div>
+            <div class="capability-tags-container">
+              <span class="capability-tag-pill">Spring Core</span>
+              <span class="capability-tag-pill">Hibernate</span>
+              <span class="capability-tag-pill">JDBC</span>
+              <span class="capability-tag-pill">JSP</span>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="capability-horizontal-card scroll-reveal-card">
+            <div class="capability-card-header">
+              <span class="capability-card-index">03/</span>
+              <span class="capability-card-title">DATABASE</span>
+            </div>
+            <div class="capability-tags-container">
+              <span class="capability-tag-pill">MySQL</span>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="capability-horizontal-card scroll-reveal-card">
+            <div class="capability-card-header">
+              <span class="capability-card-index">04/</span>
+              <span class="capability-card-title">TOOLS</span>
+            </div>
+            <div class="capability-tags-container">
+              <span class="capability-tag-pill">Vercel</span>
+              <span class="capability-tag-pill">Render</span>
+              <span class="capability-tag-pill">Git</span>
+              <span class="capability-tag-pill">GitHub</span>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="capability-horizontal-card scroll-reveal-card">
+            <div class="capability-card-header">
+              <span class="capability-card-index">05/</span>
+              <span class="capability-card-title">AI TOOLS</span>
+            </div>
+            <div class="capability-tags-container">
+              <span class="capability-tag-pill">ChatGPT</span>
+              <span class="capability-tag-pill">GitHub Copilot</span>
+              <span class="capability-tag-pill">Claude</span>
+              <span class="capability-tag-pill">Groq API</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Infinite Scrolling Marquee Banner -->
+      <div class="marquee-ticker-wrap">
+        <div class="marquee-ticker-inner">
+          <span>JAVA</span>
+          <span class="ticker-dot">•</span>
+          <span>SPRING CORE</span>
+          <span class="ticker-dot">•</span>
+          <span>REACT.JS</span>
+          <span class="ticker-dot">•</span>
+          <span>MYSQL</span>
+          <span class="ticker-dot">•</span>
+          <span>NODE.JS</span>
+          <span class="ticker-dot">•</span>
+          <span>EXPRESS.JS</span>
+          <span class="ticker-dot">•</span>
+          <span>DOCKER</span>
+          <span class="ticker-dot">•</span>
+          <span>GIT</span>
+          <span class="ticker-dot">•</span>
+          <span>VERCEL</span>
+          <span class="ticker-dot">•</span>
+          <span>GITHUB</span>
+          <span class="ticker-dot">•</span>
+          <span>CLAUDE</span>
+          <span class="ticker-dot">•</span>
+          <span>GROQ API</span>
+          <span class="ticker-dot">•</span>
+        </div>
+        <!-- Repeat for Infinite Scrolling illusion -->
+        <div class="marquee-ticker-inner" aria-hidden="true">
+          <span>JAVA</span>
+          <span class="ticker-dot">•</span>
+          <span>SPRING CORE</span>
+          <span class="ticker-dot">•</span>
+          <span>REACT.JS</span>
+          <span class="ticker-dot">•</span>
+          <span>MYSQL</span>
+          <span class="ticker-dot">•</span>
+          <span>NODE.JS</span>
+          <span class="ticker-dot">•</span>
+          <span>EXPRESS.JS</span>
+          <span class="ticker-dot">•</span>
+          <span>DOCKER</span>
+          <span class="ticker-dot">•</span>
+          <span>GIT</span>
+          <span class="ticker-dot">•</span>
+          <span>VERCEL</span>
+          <span class="ticker-dot">•</span>
+          <span>GITHUB</span>
+          <span class="ticker-dot">•</span>
+          <span>CLAUDE</span>
+          <span class="ticker-dot">•</span>
+          <span>GROQ API</span>
+          <span class="ticker-dot">•</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="section-layout" id="education-section">
+      <div class="container">
+        
+        <div class="section-title-center scroll-reveal">
+          <span class="section-badge-pre">02 / Specimen</span>
+          <h2 class="section-heading-centered">Education<span class="accent-dot">.</span></h2>
+          <p class="section-tagline-center">Chronological summary of my academic history and professional training highlights.</p>
+        </div>
+
+        <div class="resume-split-grid scroll-reveal">
+          
+          <!-- Experience Column -->
+          <div class="resume-column">
+            <h3 class="resume-title-header"><i class="bi bi-briefcase"></i> Experience</h3>
+            
+            <div class="resume-card-item">
+              <div class="resume-header">
+                <h4>Full Stack Developer Intern</h4>
+                <span class="date-badge">Jan 2026 — Present</span>
+              </div>
+              <span class="company-sub">TAP Academy, Bengaluru (Remote/Hybrid)</span>
+              <ul class="bullet-list">
+                <li>Collaborated in designing and building full-stack web applications using Java, JSP/Servlets, and MySQL, achieving cross-browser compatibility and optimized page responsiveness.</li>
+                <li>Constructed secure backend modules and RESTful API endpoints using Spring Framework and JDBC, locking sensitive data endpoints with BCrypt authentication protocols.</li>
+                <li>Participated in code reviews and agile sprints, enhancing team collaboration and software quality assurance.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Education Column -->
+          <div class="resume-column">
+            <h3 class="resume-title-header"><i class="bi bi-mortarboard"></i> Education</h3>
+            
+            <div class="resume-card-item">
+              <div class="resume-header">
+                <h4>B.E. in Information Science &amp; Engineering</h4>
+                <span class="date-badge">2022 — 2026</span>
+              </div>
+              <span class="company-sub">GM Institute of Technology, Davangere</span>
+              <p class="resume-description">Focused on Core Computer Science studies, including OOP, Database Management Systems, Data Structures &amp; Algorithms, and computer networking. Maintaining a consistent CGPA of 8.9.</p>
+            </div>
+
+            <div class="resume-card-item">
+              <div class="resume-header">
+                <h4>Pre-University Course (2nd PUC)</h4>
+                <span class="date-badge">2020 — 2022</span>
+              </div>
+              <span class="company-sub">Mandaara PU College, Davangere</span>
+              <p class="resume-description">Completed secondary education specializing in Physics, Chemistry, Mathematics, and Computer Science. Graduated with a score of 87%.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Projects Section: Archive Directory Card layout -->
+    <section class="section-layout section-bg-charcoal" id="projects-section">
+      <div class="container">
+        
+        <div class="section-title-center scroll-reveal">
+          <span class="section-badge-pre">03 / Portfolio</span>
+          <h2 class="section-heading-centered">Archive Directory<span class="accent-dot">.</span></h2>
+          <p class="section-tagline-center">A comprehensive directory of my engineered applications, software systems, and AI modules.</p>
+        </div>
+
+        <!-- Projects Archive Directory Card -->
+        <div class="projects-directory-card scroll-reveal">
+          <div class="directory-card-header">
+            <span class="directory-card-title">03 // ARCHIVE DIRECTORY</span>
+          </div>
+
+          <div class="directory-table">
+            <!-- Table Header -->
+            <div class="directory-row header-row">
+              <div class="dir-col col-num">No.</div>
+              <div class="dir-col col-title">Project Title</div>
+              <div class="dir-col col-scope">Scope</div>
+              <div class="dir-col col-year">Year</div>
+            </div>
+
+            <!-- Row 1: InstaFoods -->
+            <div class="directory-row body-row" data-index="01" data-title="InstaFoods" data-scope="Java • Servlets • JSP • MySQL • Docker" data-desc="Architected a full-stack, responsive e-commerce ordering platform with clean DAO isolation and containerized deployment." data-link="https://github.com/rajathos07/InstaFoods">
+              <div class="dir-col col-num">01</div>
+              <div class="dir-col col-title">InstaFoods</div>
+              <div class="dir-col col-scope">Java • Servlets • JSP • MySQL • Docker</div>
+              <div class="dir-col col-year">2026</div>
+            </div>
+
+            <!-- Row 2: AI Code Mentor -->
+            <div class="directory-row body-row" data-index="02" data-title="AI Code Mentor" data-scope="MERN • Express • MongoDB • Groq API" data-desc="Engineered a developer assistant using the MERN stack and Groq API to deliver real-time code analysis and refactoring recommendations." data-link="https://github.com/rajathos07/AICodeMentor">
+              <div class="dir-col col-num">02</div>
+              <div class="dir-col col-title">AI Code Mentor</div>
+              <div class="dir-col col-scope">MERN • Express • MongoDB • Groq API</div>
+              <div class="dir-col col-year">2025</div>
+            </div>
+
+            <!-- Row 3: Smart Job Portal -->
+            <div class="directory-row body-row" data-index="03" data-title="Smart Job Portal" data-scope="Spring Core • Java • Groq API • MySQL" data-desc="Developed a role-based job recruitment engine integrating Groq AI API for automated resume parsing and candidate ranking." data-link="https://github.com/rajathos07/Job-Portal">
+              <div class="dir-col col-num">03</div>
+              <div class="dir-col col-title">Smart Job Portal</div>
+              <div class="dir-col col-scope">Spring Core • Java • Groq API • MySQL</div>
+              <div class="dir-col col-year">2026</div>
+            </div>
+          </div>
+
+          <!-- Dynamic Hover Elements for Projects (White circle with CODE ↗) -->
+          <div class="hover-circle-badge" id="hover-circle-badge">
+            <span>CODE ↗</span>
+          </div>
+
+          <!-- Dynamic Hover Details Card for Projects -->
+          <div class="hover-preview-card" id="hover-preview-card">
+            <h3 id="preview-title">Project Name</h3>
+            <p id="preview-scope">Scope Technologies</p>
+            <p id="preview-desc" style="margin-top: 8px; font-size: 11px; opacity: 0.8; line-height: 1.5; color: #a1a1aa;"></p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section-layout" id="contact-section">
+      <div class="container grid-container-2">
+        
+        <!-- Left details column -->
+        <div class="contact-text-col scroll-reveal">
+          <span class="section-badge-pre">04 / Connect</span>
+          <h2 class="section-heading">Contact Me<span class="accent-dot">.</span></h2>
+          <p class="contact-sub">Feel free to reach out for internship inquiries, project collaborations, or developer networking.</p>
+          
+          <div class="contact-info-list">
+            <div class="contact-info-card">
+              <div class="card-icon"><i class="bi bi-geo-alt"></i></div>
+              <div class="card-text">
+                <h3>Address</h3>
+                <p>Davangere, Karnataka, India - 577002</p>
+              </div>
+            </div>
+            <div class="contact-info-card">
+              <div class="card-icon"><i class="bi bi-telephone"></i></div>
+              <div class="card-text">
+                <h3>Call Me</h3>
+                <p>+91 8660726402</p>
+              </div>
+            </div>
+            <div class="contact-info-card">
+              <div class="card-icon"><i class="bi bi-envelope"></i></div>
+              <div class="card-text">
+                <h3>Email Me</h3>
+                <p><a href="mailto:rajathos07@gmail.com">rajathos07@gmail.com</a></p>
+              </div>
+            </div>
+            <div class="contact-info-card">
+              <div class="card-icon"><i class="bi bi-linkedin"></i></div>
+              <div class="card-text">
+                <h3>LinkedIn</h3>
+                <p><a href="https://linkedin.com/in/rajath-os" target="_blank" rel="noopener noreferrer">linkedin.com/in/rajath-os</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right form column -->
+        <div class="contact-form-col scroll-reveal">
+          <form id="contact-form" class="specimen-form">
+            <div class="form-row-2">
+              <div class="form-field">
+                <input type="text" name="name" id="name" placeholder="Your Name" required class="form-control-input">
+              </div>
+              <div class="form-field">
+                <input type="email" name="email" id="email" placeholder="Your Email" required class="form-control-input">
+              </div>
+            </div>
+            <div class="form-field">
+              <input type="text" name="subject" id="subject" placeholder="Subject" required class="form-control-input">
+            </div>
+            <div class="form-field">
+              <textarea name="message" id="message" rows="4" placeholder="Your Message" required class="form-control-textarea"></textarea>
+            </div>
+            
+            <div class="form-status">
+              <div class="loading-spinner" id="form-loading"><i class="bi bi-arrow-repeat spin"></i> Transmitting...</div>
+              <div class="success-message" id="form-success"><i class="bi bi-check-circle-fill"></i> Delivery successful. Thank you!</div>
+              <div class="error-message" id="form-error"><i class="bi bi-exclamation-triangle-fill"></i> Delivery error. Please try again.</div>
+            </div>
+
+            <button type="submit" class="submit-btn-pill">Send Message</button>
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="unfold-footer">
+    <div class="container footer-content-wrap">
+      <div class="footer-details-row">
+        <h3 class="footer-logo">Rajath O S<span class="accent-dot">.</span></h3>
+        <p class="footer-tagline">Building clean backend architectures and dynamic web experiences.</p>
+        <div class="footer-social-links">
+          <a href="https://github.com/rajathos07" target="_blank" rel="noopener noreferrer"><i class="bi bi-github"></i></a>
+          <a href="https://linkedin.com/in/rajath-os" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin"></i></a>
+          <a href="mailto:rajathos07@gmail.com"><i class="bi bi-envelope-fill"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-divider"></div>
+      
+      <div class="footer-bottom-row">
+        <p class="copyright-info">&copy; 2026 Rajath O S. All Rights Reserved.</p>
+        <p class="credits-info">Inspired by <a href="https://themewagon.github.io/unfold/" target="_blank" rel="noopener noreferrer">Unfold</a> &amp; built with Vanilla CSS</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Custom JavaScript -->
+  <script src="assets/js/main.js"></script>
+</body>
 </html>
