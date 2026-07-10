@@ -8,28 +8,26 @@ export default function App() {
   const [navbarScrolled, setNavbarScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home-section');
-  const [announcementClosed, setAnnouncementClosed] = useState(false);
 
   // Form submit state simulation
   const [formState, setFormState] = useState({ name: '', email: '', subject: '', message: '' });
   const [formStatus, setFormStatus] = useState('idle'); // idle | loading | success | error
 
   // Project table hover coordinates
-  const [hoveredProject, setHoveredProject] = useState(null); // { index, title, scope, desc } or null
+  const [hoveredProject, setHoveredProject] = useState(null);
   const projectsCardRef = useRef(null);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   
-  // Smooth out coordinate tracking
+  // Smooth coordinate tracking
   const springX = useSpring(mouseX, { stiffness: 250, damping: 25 });
   const springY = useSpring(mouseY, { stiffness: 250, damping: 25 });
 
-  // Handle scroll checks
+  // Handle scroll spy
   useEffect(() => {
     const handleScroll = () => {
       setNavbarScrolled(window.scrollY > 50);
 
-      // Simple scrollspy calculations
       const sections = ['home-section', 'about-section', 'skills-section', 'education-section', 'projects-section', 'contact-section'];
       const scrollPos = window.scrollY + window.innerHeight / 3;
 
@@ -49,7 +47,6 @@ export default function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Handle projects list hover tracking
   const handleProjectMouseMove = (e) => {
     if (!projectsCardRef.current) return;
     const rect = projectsCardRef.current.getBoundingClientRect();
@@ -70,12 +67,13 @@ export default function App() {
     }, 1500);
   };
 
+  // Category classes mapping to solid category colors (Iris, Periwinkle, Orchid, etc.)
   const skillsData = [
-    { index: '01', title: 'FRONTEND', tags: ['HTML', 'CSS', 'JS'] },
-    { index: '02', title: 'BACKEND', tags: ['Spring Core', 'Hibernate', 'JDBC', 'JSP'] },
-    { index: '03', title: 'DATABASE', tags: ['MySQL'] },
-    { index: '04', title: 'TOOLS', tags: ['Vercel', 'Render', 'Git', 'GitHub'] },
-    { index: '05', title: 'AI TOOLS', tags: ['ChatGPT', 'GitHub Copilot', 'Claude', 'Groq API'] }
+    { index: '01', title: 'FRONTEND', tags: ['HTML', 'CSS', 'JS'], bgClass: 'card-color-iris' },
+    { index: '02', title: 'BACKEND', tags: ['Spring Core', 'Hibernate', 'JDBC', 'JSP'], bgClass: 'card-color-periwinkle' },
+    { index: '03', title: 'DATABASE', tags: ['MySQL'], bgClass: 'card-color-orchid' },
+    { index: '04', title: 'TOOLS', tags: ['Vercel', 'Render', 'Git', 'GitHub'], bgClass: 'card-color-pale-iris' },
+    { index: '05', title: 'AI TOOLS', tags: ['ChatGPT', 'GitHub Copilot', 'Claude', 'Groq API'], bgClass: 'card-color-deep-iris' }
   ];
 
   const projectsData = [
@@ -103,7 +101,7 @@ export default function App() {
   ];
 
   return (
-    <div className="obsidian-canvas" style={{ paddingTop: announcementClosed ? '0px' : '40px' }}>
+    <div className="obsidian-canvas">
       
       {/* Blueprint Grid Lines */}
       <div className="lines-wrap">
@@ -114,32 +112,8 @@ export default function App() {
         </div>
       </div>
 
-      {/* Top Announcement Bar (Monad spec - ink background, parchment text) */}
-      <AnimatePresence>
-        {!announcementClosed && (
-          <motion.div 
-            className="announcement-bar-wrap"
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            <div className="announcement-container">
-              <div className="announcement-text">
-                NOW RECONFIGURED WITH REACT &amp; 3D PERSPECTIVE INTERACTION
-              </div>
-              <button 
-                className="announcement-close-btn" 
-                onClick={() => setAnnouncementClosed(true)}
-                aria-label="Close"
-              >
-                ×
-              </button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Navigation Header */}
-      <nav className={`unfold-navbar ${navbarScrolled ? 'scrolled' : ''}`} style={{ top: announcementClosed ? '0px' : '40px' }}>
+      {/* Navigation Header (Sticky Glassmorphism) */}
+      <nav className={`unfold-navbar scrolled ${navbarScrolled ? 'scrolled' : ''}`}>
         <div className="navbar-container">
           <div className="navbar-menu-side side-left">
             <a href="#home-section" className={`nav-item-link ${activeSection === 'home-section' ? 'active' : ''}`}>Home</a>
@@ -185,25 +159,34 @@ export default function App() {
 
       {/* HERO SECTION */}
       <header className="cover-hero-dashboard" id="home-section">
-        {/* Soft atmospheric gradient wash blurred behind */}
-        <div className="gradient-atmos-wash"></div>
-        
         <div className="container grid-container-2 hero-dashboard-grid">
           
           {/* Left card: Profile details wrapped in 3D perspective hook */}
           <ThreeDCard>
             <div>
-              <span className="cursive-serif-intro">Move Fast. Build to Last.</span>
-              <h1 className="dashboard-name">RAJATH O S</h1>
+              {/* Promo eyebrow tag (Monad / Origin style) */}
+              <div className="promo-eyebrow-badge">MOVE FAST • BUILD TO LAST</div>
+              
+              {/* Display Headline with mixed italic tension */}
+              <h1 className="dashboard-name">Own the <i>code</i>. Build the <i>future</i>.</h1>
               <span className="developer-subheading">| Java FullStack Developer</span>
+              
               <p className="profile-intro-text">
                 Crafting robust backend schemas in Spring Boot and fluid frontend interfaces. Dedicated to high-fidelity engineering and editorial clarity.
               </p>
+              
+              {/* Mockup AI query input field */}
+              <div className="ai-prompt-wrapper">
+                <span className="ai-prompt-text">Review my Spring Boot configuration...</span>
+                <button className="ai-prompt-btn" aria-label="Submit prompt">
+                  <i className="bi bi-arrow-right-short" style={{ fontSize: '20px' }}></i>
+                </button>
+              </div>
             </div>
             
-            <div className="dashboard-btn-row">
+            <div className="dashboard-btn-row" style={{ marginTop: '24px' }}>
               <a href="#projects-section" className="btn-primary-blue-pill">
-                Explore Work <span style={{ marginLeft: '4px' }}>▸</span>
+                Explore Work <i className="bi bi-arrow-right" style={{ marginLeft: '4px' }}></i>
               </a>
               <a href="#contact-section" className="btn-ghost-pill">
                 Get in Touch
@@ -221,16 +204,16 @@ export default function App() {
               
               <div className="stats-card-body">
                 <div className="terminal-line">
-                  <span className="terminal-prompt">$</span> <span class="terminal-cmd">whoami:</span> <span className="terminal-val">rajathos</span>
+                  <span className="terminal-prompt">$</span> <span className="terminal-cmd">whoami:</span> <span className="terminal-val">rajathos</span>
                 </div>
                 <div className="terminal-line">
-                  <span class="terminal-prompt">$</span> <span class="terminal-cmd">status:</span> <span className="terminal-val status-active">ACTIVE_BUILDER</span>
+                  <span className="terminal-prompt">$</span> <span className="terminal-cmd">status:</span> <span className="terminal-val status-active">ACTIVE_BUILDER</span>
                 </div>
                 <div className="terminal-line">
-                  <span class="terminal-prompt">$</span> <span class="terminal-cmd">location:</span> <span className="terminal-val">Bengaluru, IN</span>
+                  <span className="terminal-prompt">$</span> <span className="terminal-cmd">location:</span> <span className="terminal-val">Bengaluru, IN</span>
                 </div>
                 <div className="terminal-line">
-                  <span class="terminal-prompt">$</span> <span class="terminal-cmd">core_stack:</span> <span className="terminal-val">[Java, Spring Core, MERN]</span>
+                  <span className="terminal-prompt">$</span> <span className="terminal-cmd">core_stack:</span> <span className="terminal-val">[Java, Spring, MERN]</span>
                 </div>
               </div>
             </div>
@@ -258,13 +241,15 @@ export default function App() {
           <div className="photo-frame-col">
             <div className="photo-offset-wrapper">
               <div className="photo-offset-frame"></div>
-              <img src="/assets/img/profile-img.png" alt="Profile Image" class="photo-profile" />
+              <img src="/assets/img/profile-img.png" alt="Profile Image" className="photo-profile" />
             </div>
           </div>
 
           <div className="bio-text-col">
             <span className="section-badge-pre">01 / Biography</span>
-            <h2 className="section-heading">About Me<span className="accent-dot">.</span></h2>
+            
+            {/* Display title with italic tension */}
+            <h2 className="section-heading">Simplify the <i>complex</i>.</h2>
             
             <p className="bio-paragraph-intro">Passionate and results-driven Information Science &amp; Engineering student with hands-on experience in full-stack web application development.</p>
             <p className="bio-paragraph">Skilled in architecting robust backend systems in Java/Spring and crafting interactive, modern user experiences. With a solid academic foundation in Core CS Concepts (OOP, DBMS, DSA) and industry-aligned internship exposure at TAP Academy, I focus on building scalable web projects that solve real-world problems.</p>
@@ -296,20 +281,20 @@ export default function App() {
               </div>
             </div>
 
-            <a href="#contact-section" className="btn-secondary-black-pill">
-              Get in Touch
+            <a href="#contact-section" className="btn-primary-blue-pill">
+              Connect With Me <i className="bi bi-arrow-right" style={{ marginLeft: '4px' }}></i>
             </a>
           </div>
 
         </div>
       </section>
 
-      {/* SKILLS SECTION */}
-      <section className="section-layout section-bg-line" id="skills-section">
+      {/* SKILLS SECTION: Chromatic Category Tiles */}
+      <section className="section-layout section-bg-abyss" id="skills-section">
         <div className="container grid-container-2 core-stack-layout">
           
           <div className="core-stack-info">
-            <h2 className="cursive-serif-title">Core Stack &amp; Capabilities.</h2>
+            <h2 className="cursive-serif-title">Curated <i>capabilities</i>.</h2>
             <p className="core-stack-desc">A curated suite of modern web standards, API protocols, database utilities, and generative AI configurations.</p>
           </div>
 
@@ -317,9 +302,9 @@ export default function App() {
             {skillsData.map((skill, index) => (
               <motion.div 
                 key={index} 
-                className="capability-horizontal-card"
-                initial={{ opacity: 0, x: 40 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                className={`capability-horizontal-card ${skill.bgClass}`}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
@@ -359,89 +344,92 @@ export default function App() {
         </div>
       </section>
 
-      {/* EDUCATION TIMELINE */}
+      {/* EDUCATION TIMELINE: Silver Inverted Card block (breaking dark rhythm) */}
       <section className="section-layout" id="education-section">
         <div className="container">
           
           <div className="section-title-center">
             <span className="section-badge-pre">02 / Specimen</span>
-            <h2 className="section-heading-centered">Education &amp; Experience<span class="accent-dot">.</span></h2>
+            <h2 className="section-heading-centered">Education &amp; Experience<span className="accent-dot">.</span></h2>
             <p className="section-tagline-center">Chronological overview of my training background and internships.</p>
           </div>
 
-          <div className="resume-split-grid">
-            
-            {/* Experience */}
-            <div className="resume-column">
-              <h3 className="resume-title-header"><i className="bi bi-briefcase"></i> Experience</h3>
+          {/* Silver Inverted Card Container (light surface, black text inside) */}
+          <div className="silver-inverted-container-card">
+            <div className="resume-split-grid">
               
-              <motion.div 
-                className="resume-card-item"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-              >
-                <div className="resume-header">
-                  <h4>Full Stack Developer Intern</h4>
-                  <span className="date-badge">Jan 2026 — Present</span>
-                </div>
-                <span className="company-sub">TAP Academy, Bengaluru (Remote/Hybrid)</span>
-                <ul className="bullet-list">
-                  <li>Collaborated in designing and building full-stack web applications using Java, JSP/Servlets, and MySQL, achieving cross-browser compatibility and optimized page responsiveness.</li>
-                  <li>Constructed secure backend modules and RESTful API endpoints using Spring Framework and JDBC, locking sensitive data endpoints with BCrypt authentication protocols.</li>
-                  <li>Participated in code reviews and agile sprints, enhancing team collaboration and software quality assurance.</li>
-                </ul>
-              </motion.div>
+              {/* Experience */}
+              <div className="resume-column">
+                <h3 className="resume-title-header"><i className="bi bi-briefcase"></i> Experience</h3>
+                
+                <motion.div 
+                  className="resume-card-item"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <div className="resume-header">
+                    <h4>Full Stack Developer Intern</h4>
+                    <span className="date-badge">Jan 2026 — Present</span>
+                  </div>
+                  <span className="company-sub">TAP Academy, Bengaluru (Remote/Hybrid)</span>
+                  <ul className="bullet-list">
+                    <li>Collaborated in designing and building full-stack web applications using Java, JSP/Servlets, and MySQL, achieving cross-browser compatibility and optimized page responsiveness.</li>
+                    <li>Constructed secure backend modules and RESTful API endpoints using Spring Framework and JDBC, locking sensitive data endpoints with BCrypt authentication protocols.</li>
+                    <li>Participated in code reviews and agile sprints, enhancing team collaboration and software quality assurance.</li>
+                  </ul>
+                </motion.div>
+              </div>
+
+              {/* Education */}
+              <div className="resume-column">
+                <h3 className="resume-title-header"><i className="bi bi-mortarboard"></i> Education</h3>
+                
+                <motion.div 
+                  className="resume-card-item"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                >
+                  <div className="resume-header">
+                    <h4>B.E. in Information Science &amp; Engineering</h4>
+                    <span className="date-badge">2022 — 2026</span>
+                  </div>
+                  <span className="company-sub">GM Institute of Technology, Davangere</span>
+                  <p className="resume-description">Focused on Core Computer Science studies, including OOP, Database Management Systems, Data Structures &amp; Algorithms, and computer networking. Maintaining a consistent CGPA of 8.9.</p>
+                </motion.div>
+
+                <motion.div 
+                  className="resume-card-item"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                >
+                  <div className="resume-header">
+                    <h4>Pre-University Course (2nd PUC)</h4>
+                    <span className="date-badge">2020 — 2022</span>
+                  </div>
+                  <span className="company-sub">Mandaara PU College, Davangere</span>
+                  <p className="resume-description">Completed secondary education specializing in Physics, Chemistry, Mathematics, and Computer Science. Graduated with a score of 87%.</p>
+                </motion.div>
+              </div>
+
             </div>
-
-            {/* Education */}
-            <div className="resume-column">
-              <h3 className="resume-title-header"><i className="bi bi-mortarboard"></i> Education</h3>
-              
-              <motion.div 
-                className="resume-card-item"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-              >
-                <div className="resume-header">
-                  <h4>B.E. in Information Science &amp; Engineering</h4>
-                  <span className="date-badge">2022 — 2026</span>
-                </div>
-                <span className="company-sub">GM Institute of Technology, Davangere</span>
-                <p className="resume-description">Focused on Core Computer Science studies, including OOP, Database Management Systems, Data Structures &amp; Algorithms, and computer networking. Maintaining a consistent CGPA of 8.9.</p>
-              </motion.div>
-
-              <motion.div 
-                className="resume-card-item"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-              >
-                <div className="resume-header">
-                  <h4>Pre-University Course (2nd PUC)</h4>
-                  <span className="date-badge">2020 — 2022</span>
-                </div>
-                <span className="company-sub">Mandaara PU College, Davangere</span>
-                <p className="resume-description">Completed secondary education specializing in Physics, Chemistry, Mathematics, and Computer Science. Graduated with a score of 87%.</p>
-              </motion.div>
-            </div>
-
           </div>
 
         </div>
       </section>
 
       {/* PROJECTS SECTION: Table directory with Framer Motion cursor follow popups */}
-      <section className="section-layout section-bg-line" id="projects-section">
+      <section className="section-layout section-bg-abyss" id="projects-section">
         <div className="container">
           
           <div className="section-title-center">
             <span className="section-badge-pre">03 / Portfolio</span>
-            <h2 className="section-heading-centered">Archive Directory<span class="accent-dot">.</span></h2>
+            <h2 className="section-heading-centered">Archive Directory<span className="accent-dot">.</span></h2>
             <p className="section-tagline-center">A comprehensive directory of my engineered applications, software systems, and AI modules.</p>
           </div>
 
@@ -473,7 +461,7 @@ export default function App() {
                   <div className="dir-col col-num">{project.num}</div>
                   <div className="dir-col col-title">{project.title}</div>
                   <div className="dir-col col-scope">{project.scope}</div>
-                  <div className="dir-col col-year">{project.link ? '2026' : '2025'}</div>
+                  <div className="dir-col col-year">2026</div>
                 </div>
               ))}
             </div>
@@ -517,7 +505,7 @@ export default function App() {
               transition={{ duration: 0.2 }}
             >
               <h3>{hoveredProject?.title || 'Project'}</h3>
-              <p style={{ fontWeight: '700', fontSize: '11px', color: 'var(--color-lake-blue)' }}>
+              <p style={{ fontWeight: '700', fontSize: '11px', color: 'var(--color-iris-gleam)' }}>
                 {hoveredProject?.scope}
               </p>
               <p style={{ marginTop: '8px', opacity: 0.85 }}>
@@ -536,7 +524,9 @@ export default function App() {
           
           <div className="contact-text-col">
             <span className="section-badge-pre">04 / Connect</span>
-            <h2 className="section-heading">Contact Me<span className="accent-dot">.</span></h2>
+            
+            {/* Display title with italic tension */}
+            <h2 className="section-heading">Simplify your <i>advisory</i>.</h2>
             <p className="contact-sub">Feel free to reach out for internship inquiries, project collaborations, or developer networking.</p>
 
             <div className="contact-info-list">
@@ -562,7 +552,7 @@ export default function App() {
                 </div>
               </div>
               <div className="contact-info-card">
-                <div className="card-icon"><i class="bi bi-linkedin"></i></div>
+                <div className="card-icon"><i className="bi bi-linkedin"></i></div>
                 <div className="card-text">
                   <h3>LinkedIn</h3>
                   <p><a href="https://linkedin.com/in/rajath-os" target="_blank" rel="noopener noreferrer">linkedin.com/in/rajath-os</a></p>
@@ -617,11 +607,11 @@ export default function App() {
               </div>
 
               <div className="form-status">
-                {formStatus === 'loading' && <div style={{ color: 'var(--color-smoke)', display: 'flex', gap: '8px' }}><i className="bi bi-arrow-repeat spin"></i> Transmitting...</div>}
-                {formStatus === 'success' && <div style={{ color: 'var(--color-lake-blue)' }}><i className="bi bi-check-circle-fill"></i> Delivery successful. Thank you!</div>}
+                {formStatus === 'loading' && <div style={{ color: 'var(--color-fog)', display: 'flex', gap: '8px' }}><i className="bi bi-arrow-repeat spin"></i> Transmitting...</div>}
+                {formStatus === 'success' && <div style={{ color: 'var(--color-iris-gleam)' }}><i className="bi bi-check-circle-fill"></i> Delivery successful. Thank you!</div>}
               </div>
 
-              <button type="submit" className="btn-secondary-black-pill" style={{ border: 'none', alignSelf: 'flex-start' }}>
+              <button type="submit" className="btn-primary-blue-pill" style={{ border: 'none', alignSelf: 'flex-start' }}>
                 Send Message
               </button>
             </form>

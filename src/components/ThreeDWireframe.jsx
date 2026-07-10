@@ -1,9 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 /**
- * ThreeDWireframe Component
- * Renders an interactive 3D wireframe cube using pure React, math, and SVG.
- * Rotates automatically and reacts to user mouse movements.
+ * ThreeDWireframe Component (Origin Financial Dark Edition)
+ * Renders an interactive 3D rotating SVG wireframe cube in Cyan Signal.
  */
 export default function ThreeDWireframe() {
   const containerRef = useRef(null);
@@ -35,11 +34,9 @@ export default function ThreeDWireframe() {
     
     const animate = () => {
       setRotation(prev => {
-        // Slow auto-rotation offset
         let dx = 0.006;
         let dy = 0.008;
 
-        // If user is hovering, skew rotation speed towards mouse position
         if (isHovered.current) {
           dx = mousePos.y * 0.03;
           dy = mousePos.x * 0.03;
@@ -62,8 +59,8 @@ export default function ThreeDWireframe() {
   const handleMouseMove = (e) => {
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) - 0.5; // range -0.5 to 0.5
-    const y = ((e.clientY - rect.top) / rect.height) - 0.5; // range -0.5 to 0.5
+    const x = ((e.clientX - rect.left) / rect.width) - 0.5;
+    const y = ((e.clientY - rect.top) / rect.height) - 0.5;
     setMousePos({ x, y });
   };
 
@@ -76,13 +73,11 @@ export default function ThreeDWireframe() {
     setMousePos({ x: 0, y: 0 });
   };
 
-  // Projection math: 3D vertices -> 2D screen coordinates
-  const scale = 50; // Size factor
-  const distance = 3.2; // Camera perspective distance
+  const scale = 50;
+  const distance = 3.2;
   const width = 140;
   const height = 140;
 
-  // Rotate vertices around 3D axes
   const projectedVertices = vertices.map(v => {
     // Rotate X
     const cosX = Math.cos(rotation.x);
@@ -102,7 +97,6 @@ export default function ThreeDWireframe() {
     let x3 = x2 * cosZ - y1 * sinZ;
     let y3 = x2 * sinZ + y1 * cosZ;
 
-    // Perspective projection formula
     const depth = distance - z2;
     const sx = width / 2 + (x3 * scale) / depth;
     const sy = height / 2 + (y3 * scale) / depth;
@@ -126,7 +120,6 @@ export default function ThreeDWireframe() {
       }}
     >
       <svg width={width} height={height} style={{ overflow: 'visible' }}>
-        {/* Draw edges as lines */}
         {edges.map(([p1, p2], idx) => (
           <line
             key={idx}
@@ -134,20 +127,21 @@ export default function ThreeDWireframe() {
             y1={projectedVertices[p1].y}
             x2={projectedVertices[p2].x}
             y2={projectedVertices[p2].y}
-            stroke="var(--color-lake-blue)"
+            // Cyan Signal color line
+            stroke="var(--color-cyan-signal)"
             strokeWidth="1.2"
             opacity="0.8"
           />
         ))}
 
-        {/* Draw vertex points */}
         {projectedVertices.map((v, idx) => (
           <circle
             key={idx}
             cx={v.x}
             cy={v.y}
             r="3"
-            fill="var(--color-off-black)"
+            // High-contrast white point against dark cards
+            fill="var(--color-pure)"
           />
         ))}
       </svg>
