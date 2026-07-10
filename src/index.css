@@ -922,6 +922,11 @@ ul {
   animation: marquee-scroll 28s linear infinite;
 }
 
+@keyframes marquee-scroll {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-100%, 0, 0); }
+}
+
 .marquee-ticker-inner span {
   font-family: var(--font-mono);
   font-size: var(--text-mono-label);
@@ -1074,9 +1079,11 @@ ul {
 /* Directory grid lines formatting */
 .directory-row {
   display: grid;
-  grid-template-columns: 80px 220px 1fr 120px;
-  padding: 20px 16px;
+  /* Updated columns: removed scope column */
+  grid-template-columns: 80px 1fr 120px;
+  padding: 24px 16px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  border-left: 2px solid transparent; /* Slide edge indicator */
   align-items: center;
   transition: var(--transition-fast);
   position: relative;
@@ -1101,7 +1108,9 @@ ul {
 
 .body-row:hover {
   color: var(--color-pure);
-  background-color: rgba(132, 125, 255, 0.03); /* Iris gleam alpha */
+  background-color: rgba(132, 125, 255, 0.02); /* Iris gleam alpha */
+  border-left: 2px solid var(--color-iris-gleam);
+  padding-left: 24px; /* Slide animation */
 }
 
 /* Hover dim siblings effect */
@@ -1490,3 +1499,41 @@ ul {
     padding: var(--spacing-24);
   }
 }
+
+/*--------------------------------------------------------------
+# Origin Financial Atmospheric Drifting Gradient Wash
+--------------------------------------------------------------*/
+@keyframes float-wash {
+  0% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(60px, -40px) scale(1.15); }
+  66% { transform: translate(-40px, 30px) scale(0.9); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+.gradient-atmos-wash {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--color-coral) 0%, var(--color-sky-blue) 50%, var(--color-gold) 100%);
+  filter: blur(120px);
+  opacity: 0.08;
+  z-index: 1;
+  pointer-events: none;
+  top: 15%;
+  left: 20%;
+  animation: float-wash 20s infinite ease-in-out;
+}
+
+/* Unique Tag style for spotlight project */
+.unique-project-tag {
+  background-color: rgba(0, 179, 221, 0.12);
+  color: var(--color-cyan-signal);
+  border: 1px solid rgba(0, 179, 221, 0.25);
+  border-radius: var(--radius-pillbuttons);
+  padding: 4px 12px;
+  font-family: var(--font-mono);
+  font-size: var(--text-mono-label);
+  text-transform: uppercase;
+}
+

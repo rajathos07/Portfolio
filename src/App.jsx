@@ -11,7 +11,7 @@ export default function App() {
 
   // Form submit state simulation
   const [formState, setFormState] = useState({ name: '', email: '', subject: '', message: '' });
-  const [formStatus, setFormStatus] = useState('idle'); // idle | loading | success | error
+  const [formStatus, setFormStatus] = useState('idle');
 
   // Project table hover coordinates
   const [hoveredProject, setHoveredProject] = useState(null);
@@ -67,7 +67,6 @@ export default function App() {
     }, 1500);
   };
 
-  // Category classes mapping to solid category colors (Iris, Periwinkle, Orchid, etc.)
   const skillsData = [
     { index: '01', title: 'FRONTEND', tags: ['HTML', 'CSS', 'JS'], bgClass: 'card-color-iris' },
     { index: '02', title: 'BACKEND', tags: ['Spring Core', 'Hibernate', 'JDBC', 'JSP'], bgClass: 'card-color-periwinkle' },
@@ -76,6 +75,7 @@ export default function App() {
     { index: '05', title: 'AI TOOLS', tags: ['ChatGPT', 'GitHub Copilot', 'Claude', 'Groq API'], bgClass: 'card-color-deep-iris' }
   ];
 
+  // Replaced Job Portal with AI Exam Evaluation (Scope set to blank)
   const projectsData = [
     {
       num: '01',
@@ -93,10 +93,10 @@ export default function App() {
     },
     {
       num: '03',
-      title: 'Smart Job Portal',
-      scope: 'Spring Core • Java • Groq API • MySQL',
-      desc: 'Developed a role-based job recruitment engine integrating Groq AI API for automated resume parsing and candidate ranking.',
-      link: 'https://github.com/rajathos07/Job-Portal'
+      title: 'AI Exam Evaluation',
+      scope: 'AI • NLP Core',
+      desc: 'Engineered an automated assessment system utilizing natural language processing to evaluate and score academic exams.',
+      link: 'https://github.com/rajathos07/text_processing'
     }
   ];
 
@@ -159,32 +159,25 @@ export default function App() {
 
       {/* HERO SECTION */}
       <header className="cover-hero-dashboard" id="home-section">
+        {/* Moving atmospheric background wash */}
+        <div className="gradient-atmos-wash"></div>
+        
         <div className="container grid-container-2 hero-dashboard-grid">
           
           {/* Left card: Profile details wrapped in 3D perspective hook */}
           <ThreeDCard>
             <div>
-              {/* Promo eyebrow tag (Monad / Origin style) */}
               <div className="promo-eyebrow-badge">MOVE FAST • BUILD TO LAST</div>
               
-              {/* Display Headline with mixed italic tension */}
-              <h1 className="dashboard-name">Own the <i>code</i>. Build the <i>future</i>.</h1>
-              <span className="developer-subheading">| Java FullStack Developer</span>
-              
-              <p className="profile-intro-text">
-                Crafting robust backend schemas in Spring Boot and fluid frontend interfaces. Dedicated to high-fidelity engineering and editorial clarity.
-              </p>
-              
-              {/* Mockup AI query input field */}
-              <div className="ai-prompt-wrapper">
-                <span className="ai-prompt-text">Review my Spring Boot configuration...</span>
-                <button className="ai-prompt-btn" aria-label="Submit prompt">
-                  <i className="bi bi-arrow-right-short" style={{ fontSize: '20px' }}></i>
-                </button>
+              {/* Clean minimal main mono headline (removed the intro text block completely as requested) */}
+              <div style={{ margin: '36px 0 48px 0' }}>
+                <span className="developer-subheading" style={{ fontSize: '32px', color: 'var(--color-pure)', letterSpacing: '-0.5px', fontFamily: 'var(--font-serif)', fontStyle: 'italic', textTransform: 'none', lineHeight: '1.2' }}>
+                  Java FullStack Developer
+                </span>
               </div>
             </div>
             
-            <div className="dashboard-btn-row" style={{ marginTop: '24px' }}>
+            <div className="dashboard-btn-row">
               <a href="#projects-section" className="btn-primary-blue-pill">
                 Explore Work <i className="bi bi-arrow-right" style={{ marginLeft: '4px' }}></i>
               </a>
@@ -248,7 +241,6 @@ export default function App() {
           <div className="bio-text-col">
             <span className="section-badge-pre">01 / Biography</span>
             
-            {/* Display title with italic tension */}
             <h2 className="section-heading">Simplify the <i>complex</i>.</h2>
             
             <p className="bio-paragraph-intro">Passionate and results-driven Information Science &amp; Engineering student with hands-on experience in full-stack web application development.</p>
@@ -344,7 +336,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* EDUCATION TIMELINE: Silver Inverted Card block (breaking dark rhythm) */}
+      {/* EDUCATION TIMELINE */}
       <section className="section-layout" id="education-section">
         <div className="container">
           
@@ -354,7 +346,6 @@ export default function App() {
             <p className="section-tagline-center">Chronological overview of my training background and internships.</p>
           </div>
 
-          {/* Silver Inverted Card Container (light surface, black text inside) */}
           <div className="silver-inverted-container-card">
             <div className="resume-split-grid">
               
@@ -400,21 +391,6 @@ export default function App() {
                   <span className="company-sub">GM Institute of Technology, Davangere</span>
                   <p className="resume-description">Focused on Core Computer Science studies, including OOP, Database Management Systems, Data Structures &amp; Algorithms, and computer networking. Maintaining a consistent CGPA of 8.9.</p>
                 </motion.div>
-
-                <motion.div 
-                  className="resume-card-item"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
-                >
-                  <div className="resume-header">
-                    <h4>Pre-University Course (2nd PUC)</h4>
-                    <span className="date-badge">2020 — 2022</span>
-                  </div>
-                  <span className="company-sub">Mandaara PU College, Davangere</span>
-                  <p className="resume-description">Completed secondary education specializing in Physics, Chemistry, Mathematics, and Computer Science. Graduated with a score of 87%.</p>
-                </motion.div>
               </div>
 
             </div>
@@ -443,10 +419,10 @@ export default function App() {
             </div>
 
             <div className="directory-table">
+              {/* Removed Scope Column from layout as requested */}
               <div className="directory-row header-row">
                 <div className="dir-col col-num">No.</div>
                 <div className="dir-col col-title">Project Title</div>
-                <div className="dir-col col-scope">Scope</div>
                 <div className="dir-col col-year">Year</div>
               </div>
 
@@ -459,8 +435,12 @@ export default function App() {
                   onClick={() => window.open(project.link, '_blank')}
                 >
                   <div className="dir-col col-num">{project.num}</div>
-                  <div className="dir-col col-title">{project.title}</div>
-                  <div className="dir-col col-scope">{project.scope}</div>
+                  
+                  {/* Style project titles uniquely in Lyon Display Georgia with custom weight */}
+                  <div className="dir-col col-title" style={{ fontFamily: 'var(--font-serif)', fontSize: '22px', fontWeight: 300, color: 'var(--color-cloud)' }}>
+                    {project.title}
+                  </div>
+                  
                   <div className="dir-col col-year">2026</div>
                 </div>
               ))}
@@ -494,7 +474,10 @@ export default function App() {
                 position: 'absolute',
                 pointerEvents: 'none',
                 zIndex: 9,
-                transform: 'translate(40px, -50%)'
+                transform: 'translate(40px, -50%)',
+                // Styled uniquely with cyan highlight and glowing shadow if AI Exam Evaluation is hovered
+                borderColor: hoveredProject?.title === 'AI Exam Evaluation' ? 'var(--color-cyan-signal)' : 'rgba(255, 255, 255, 0.05)',
+                boxShadow: hoveredProject?.title === 'AI Exam Evaluation' ? 'rgba(0, 179, 221, 0.2) 0px 0px 24px 0px' : 'var(--shadow-lg)'
               }}
               animate={{
                 opacity: hoveredProject ? 1 : 0,
@@ -505,9 +488,12 @@ export default function App() {
               transition={{ duration: 0.2 }}
             >
               <h3>{hoveredProject?.title || 'Project'}</h3>
-              <p style={{ fontWeight: '700', fontSize: '11px', color: 'var(--color-iris-gleam)' }}>
+              
+              {/* Technology details shown elegantly inside the popover card instead of table */}
+              <p style={{ fontWeight: '700', fontSize: '11px', color: hoveredProject?.title === 'AI Exam Evaluation' ? 'var(--color-cyan-signal)' : 'var(--color-iris-gleam)', textTransform: 'uppercase', fontFamily: 'var(--font-mono)' }}>
                 {hoveredProject?.scope}
               </p>
+              
               <p style={{ marginTop: '8px', opacity: 0.85 }}>
                 {hoveredProject?.desc}
               </p>
@@ -525,7 +511,6 @@ export default function App() {
           <div className="contact-text-col">
             <span className="section-badge-pre">04 / Connect</span>
             
-            {/* Display title with italic tension */}
             <h2 className="section-heading">Simplify your <i>advisory</i>.</h2>
             <p className="contact-sub">Feel free to reach out for internship inquiries, project collaborations, or developer networking.</p>
 
