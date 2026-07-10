@@ -75,7 +75,6 @@ export default function App() {
     { index: '05', title: 'AI TOOLS', tags: ['ChatGPT', 'GitHub Copilot', 'Claude', 'Groq API'], bgClass: 'card-color-deep-iris' }
   ];
 
-  // Replaced Job Portal with AI Exam Evaluation (Scope set to blank)
   const projectsData = [
     {
       num: '01',
@@ -169,12 +168,19 @@ export default function App() {
             <div>
               <div className="promo-eyebrow-badge">MOVE FAST • BUILD TO LAST</div>
               
-              {/* Clean minimal main mono headline (removed the intro text block completely as requested) */}
-              <div style={{ margin: '36px 0 48px 0' }}>
-                <span className="developer-subheading" style={{ fontSize: '32px', color: 'var(--color-pure)', letterSpacing: '-0.5px', fontFamily: 'var(--font-serif)', fontStyle: 'italic', textTransform: 'none', lineHeight: '1.2' }}>
-                  Java FullStack Developer
-                </span>
-              </div>
+              {/* Name added above Java Full Stack subtitle */}
+              <h1 className="dashboard-name" style={{ fontSize: '64px', marginBottom: '8px', fontFamily: 'var(--font-serif)', fontWeight: 300 }}>
+                RAJATH O S
+              </h1>
+              
+              <span className="developer-subheading" style={{ fontSize: '13px', color: 'var(--color-iris-gleam)', letterSpacing: '0.15em', textTransform: 'uppercase', display: 'block', marginBottom: '24px', fontFamily: 'var(--font-mono)' }}>
+                | Java FullStack Developer
+              </span>
+              
+              {/* Retained text description in front as requested */}
+              <p className="profile-intro-text" style={{ fontSize: '16px', lineHeight: '1.6', color: 'var(--color-ash)', marginBottom: '32px' }}>
+                Crafting robust backend schemas in Spring Boot and fluid frontend interfaces. Dedicated to high-fidelity engineering and editorial clarity.
+              </p>
             </div>
             
             <div className="dashboard-btn-row">
@@ -419,7 +425,7 @@ export default function App() {
             </div>
 
             <div className="directory-table">
-              {/* Removed Scope Column from layout as requested */}
+              {/* Scope Column completely excluded */}
               <div className="directory-row header-row">
                 <div className="dir-col col-num">No.</div>
                 <div className="dir-col col-title">Project Title</div>
@@ -436,7 +442,7 @@ export default function App() {
                 >
                   <div className="dir-col col-num">{project.num}</div>
                   
-                  {/* Style project titles uniquely in Lyon Display Georgia with custom weight */}
+                  {/* Styled uniquely in serif with cloud coloring */}
                   <div className="dir-col col-title" style={{ fontFamily: 'var(--font-serif)', fontSize: '22px', fontWeight: 300, color: 'var(--color-cloud)' }}>
                     {project.title}
                   </div>
@@ -489,7 +495,7 @@ export default function App() {
             >
               <h3>{hoveredProject?.title || 'Project'}</h3>
               
-              {/* Technology details shown elegantly inside the popover card instead of table */}
+              {/* Technology details shown inside popover */}
               <p style={{ fontWeight: '700', fontSize: '11px', color: hoveredProject?.title === 'AI Exam Evaluation' ? 'var(--color-cyan-signal)' : 'var(--color-iris-gleam)', textTransform: 'uppercase', fontFamily: 'var(--font-mono)' }}>
                 {hoveredProject?.scope}
               </p>
