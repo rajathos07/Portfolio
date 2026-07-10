@@ -93,7 +93,7 @@ export default function App() {
     {
       num: '03',
       title: 'AI Exam Evaluation',
-      scope: 'AI • NLP Core',
+      scope: 'SQL • Node • OCR • Groq • React',
       desc: 'Engineered an automated assessment system utilizing natural language processing to evaluate and score academic exams.',
       link: 'https://github.com/rajathos07/text_processing'
     }
