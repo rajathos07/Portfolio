@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence, useMotionValue, useSpring } from 'framer-motion';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
 import ThreeDCard from './components/ThreeDCard';
-import ThreeDWireframe from './components/ThreeDWireframe';
+import ActiveTheoryBackground from './components/ActiveTheoryBackground';
 
 export default function App() {
   // Navigation & Scroll states
@@ -60,7 +60,7 @@ export default function App() {
     e.preventDefault();
     setFormStatus('loading');
     setTimeout(() => {
-      console.log('Specimen Transmission Logged:', formState);
+      console.log('Active Theory Logged:', formState);
       setFormStatus('success');
       setFormState({ name: '', email: '', subject: '', message: '' });
       setTimeout(() => setFormStatus('idle'), 5000);
@@ -68,11 +68,11 @@ export default function App() {
   };
 
   const skillsData = [
-    { index: '01', title: 'FRONTEND', tags: ['HTML', 'CSS', 'JS'], bgClass: 'card-color-iris' },
-    { index: '02', title: 'BACKEND', tags: ['Spring Core', 'Hibernate', 'JDBC', 'JSP'], bgClass: 'card-color-periwinkle' },
-    { index: '03', title: 'DATABASE', tags: ['MySQL'], bgClass: 'card-color-orchid' },
-    { index: '04', title: 'TOOLS', tags: ['Vercel', 'Render', 'Git', 'GitHub'], bgClass: 'card-color-pale-iris' },
-    { index: '05', title: 'AI TOOLS', tags: ['ChatGPT', 'GitHub Copilot', 'Claude', 'Groq API'], bgClass: 'card-color-deep-iris' }
+    { index: '01', title: 'FRONTEND', tags: ['HTML', 'CSS', 'JS'] },
+    { index: '02', title: 'BACKEND', tags: ['Spring Core', 'Hibernate', 'JDBC', 'JSP'] },
+    { index: '03', title: 'DATABASE', tags: ['MySQL'] },
+    { index: '04', title: 'TOOLS', tags: ['Vercel', 'Render', 'Git', 'GitHub'] },
+    { index: '05', title: 'AI TOOLS', tags: ['ChatGPT', 'GitHub Copilot', 'Claude', 'Groq API'] }
   ];
 
   const projectsData = [
@@ -100,33 +100,31 @@ export default function App() {
   ];
 
   return (
-    <div className="obsidian-canvas">
+    <div style={{ backgroundColor: '#000000', position: 'relative', width: '100%', minHeight: '100vh' }}>
       
-      {/* Blueprint Grid Lines */}
-      <div className="lines-wrap">
-        <div className="lines-inner">
-          <div className="lines-grid"></div>
-          <div className="lines-grid"></div>
-          <div className="lines-grid"></div>
-        </div>
-      </div>
+      {/* 3D Scroll-Reactive Background Portal & Particle Constellation */}
+      <ActiveTheoryBackground />
 
       {/* Navigation Header (Sticky Glassmorphism) */}
       <nav className={`unfold-navbar scrolled ${navbarScrolled ? 'scrolled' : ''}`}>
         <div className="navbar-container">
           <div className="navbar-menu-side side-left">
             <a href="#home-section" className={`nav-item-link ${activeSection === 'home-section' ? 'active' : ''}`}>Home</a>
+            <span className="nav-dot-separator">•</span>
             <a href="#about-section" className={`nav-item-link ${activeSection === 'about-section' ? 'active' : ''}`}>About</a>
+            <span className="nav-dot-separator">•</span>
             <a href="#skills-section" className={`nav-item-link ${activeSection === 'skills-section' ? 'active' : ''}`}>Skills</a>
           </div>
 
           <div className="navbar-logo-center">
-            <a href="#home-section" className="site-logo">Rajath O S<span className="accent-dot">.</span></a>
+            <a href="#home-section" className="site-logo">Rajath O S</a>
           </div>
 
           <div className="navbar-menu-side side-right">
             <a href="#education-section" className={`nav-item-link ${activeSection === 'education-section' ? 'active' : ''}`}>Education</a>
+            <span className="nav-dot-separator">•</span>
             <a href="#projects-section" className={`nav-item-link ${activeSection === 'projects-section' ? 'active' : ''}`}>Projects</a>
+            <span className="nav-dot-separator">•</span>
             <a href="#contact-section" className={`nav-item-link ${activeSection === 'contact-section' ? 'active' : ''}`}>Contact</a>
           </div>
         </div>
@@ -158,9 +156,6 @@ export default function App() {
 
       {/* HERO SECTION */}
       <header className="cover-hero-dashboard" id="home-section">
-        {/* Moving atmospheric background wash */}
-        <div className="gradient-atmos-wash"></div>
-        
         <div className="container grid-container-2 hero-dashboard-grid">
           
           {/* Left card: Profile details wrapped in 3D perspective hook */}
@@ -168,37 +163,37 @@ export default function App() {
             <div>
               <div className="promo-eyebrow-badge">MOVE FAST • BUILD TO LAST</div>
               
-              {/* Name added above Java Full Stack subtitle */}
-              <h1 className="dashboard-name" style={{ fontSize: '64px', marginBottom: '8px', fontFamily: 'var(--font-serif)', fontWeight: 300 }}>
+              <h1 className="dashboard-name" style={{ fontSize: '56px', marginBottom: '8px', color: 'var(--color-ghost-white)' }}>
                 RAJATH O S
               </h1>
               
-              <span className="developer-subheading" style={{ fontSize: '13px', color: 'var(--color-iris-gleam)', letterSpacing: '0.15em', textTransform: 'uppercase', display: 'block', marginBottom: '24px', fontFamily: 'var(--font-mono)' }}>
+              <span className="developer-subheading">
                 | Java FullStack Developer
               </span>
               
-              {/* Retained text description in front as requested */}
-              <p className="profile-intro-text" style={{ fontSize: '16px', lineHeight: '1.6', color: 'var(--color-ash)', marginBottom: '32px' }}>
+              <p className="profile-intro-text">
                 Crafting robust backend schemas in Spring Boot and fluid frontend interfaces. Dedicated to high-fidelity engineering and editorial clarity.
               </p>
             </div>
             
             <div className="dashboard-btn-row">
-              <a href="#projects-section" className="btn-primary-blue-pill">
-                Explore Work <i className="bi bi-arrow-right" style={{ marginLeft: '4px' }}></i>
+              {/* Primary button in Dusk Violet (#343755), label color pure black */}
+              <a href="#projects-section" className="btn-primary-blue-pill" style={{ color: 'var(--color-void-black)' }}>
+                Explore Work
               </a>
+              {/* Neutral button in Void Black Translucent */}
               <a href="#contact-section" className="btn-ghost-pill">
                 Get in Touch
               </a>
             </div>
           </ThreeDCard>
 
-          {/* Right card: System Terminal with 3D Wireframe object */}
+          {/* Right card: System Terminal with 3D stats */}
           <ThreeDCard>
             <div>
               <div className="stats-card-header">
                 <span className="stats-header-title">SYSTEM_STATS</span>
-                <span className="stats-version-code">v3.0.0_react</span>
+                <span className="stats-version-code">v3.0.0_active</span>
               </div>
               
               <div className="stats-card-body">
@@ -217,16 +212,10 @@ export default function App() {
               </div>
             </div>
 
-            {/* Footer with 3D rotating cube visual */}
             <div className="stats-card-footer">
               <span className="stats-status-indicator">
                 <span className="pulse-dot"></span> Ready to execute commands...
               </span>
-              
-              {/* SVG 3D wireframe interactive object */}
-              <div style={{ position: 'absolute', right: '-10px', bottom: '-10px', width: '140px', height: '140px' }}>
-                <ThreeDWireframe />
-              </div>
             </div>
           </ThreeDCard>
 
@@ -247,7 +236,7 @@ export default function App() {
           <div className="bio-text-col">
             <span className="section-badge-pre">01 / Biography</span>
             
-            <h2 className="section-heading">Simplify the <i>complex</i>.</h2>
+            <h2 className="section-heading">Simplify the COMPLEX.</h2>
             
             <p className="bio-paragraph-intro">Passionate and results-driven Information Science &amp; Engineering student with hands-on experience in full-stack web application development.</p>
             <p className="bio-paragraph">Skilled in architecting robust backend systems in Java/Spring and crafting interactive, modern user experiences. With a solid academic foundation in Core CS Concepts (OOP, DBMS, DSA) and industry-aligned internship exposure at TAP Academy, I focus on building scalable web projects that solve real-world problems.</p>
@@ -279,20 +268,20 @@ export default function App() {
               </div>
             </div>
 
-            <a href="#contact-section" className="btn-primary-blue-pill">
-              Connect With Me <i className="bi bi-arrow-right" style={{ marginLeft: '4px' }}></i>
+            <a href="#contact-section" className="btn-primary-blue-pill" style={{ color: 'var(--color-void-black)' }}>
+              Connect With Me
             </a>
           </div>
 
         </div>
       </section>
 
-      {/* SKILLS SECTION: Chromatic Category Tiles */}
-      <section className="section-layout section-bg-abyss" id="skills-section">
+      {/* SKILLS SECTION: Ghost Card Deck */}
+      <section className="section-layout" id="skills-section">
         <div className="container grid-container-2 core-stack-layout">
           
           <div className="core-stack-info">
-            <h2 className="cursive-serif-title">Curated <i>capabilities</i>.</h2>
+            <h2 className="cursive-serif-title">Curated Capabilities.</h2>
             <p className="core-stack-desc">A curated suite of modern web standards, API protocols, database utilities, and generative AI configurations.</p>
           </div>
 
@@ -300,11 +289,11 @@ export default function App() {
             {skillsData.map((skill, index) => (
               <motion.div 
                 key={index} 
-                className={`capability-horizontal-card ${skill.bgClass}`}
-                initial={{ opacity: 0, y: 30 }}
+                className="capability-horizontal-card"
+                initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: 0.5, delay: index * 0.08 }}
               >
                 <div className="capability-card-header">
                   <span className="capability-card-index">{skill.index}/</span>
@@ -321,7 +310,7 @@ export default function App() {
 
         </div>
 
-        {/* Marquee Banner */}
+        {/* Marquee Ticker */}
         <div className="marquee-ticker-wrap">
           <div className="marquee-ticker-inner">
             {['JAVA', 'SPRING CORE', 'HIBERNATE', 'JDBC', 'JSP', 'MYSQL', 'REACT.JS', 'NODE.JS', 'EXPRESS.JS', 'GIT', 'VERCEL', 'GITHUB', 'CLAUDE', 'GROQ API'].map((t, idx) => (
@@ -348,7 +337,7 @@ export default function App() {
           
           <div className="section-title-center">
             <span className="section-badge-pre">02 / Specimen</span>
-            <h2 className="section-heading-centered">Education &amp; Experience<span className="accent-dot">.</span></h2>
+            <h2 className="section-heading-centered">Education &amp; Experience</h2>
             <p className="section-tagline-center">Chronological overview of my training background and internships.</p>
           </div>
 
@@ -361,7 +350,7 @@ export default function App() {
                 
                 <motion.div 
                   className="resume-card-item"
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5 }}
@@ -385,7 +374,7 @@ export default function App() {
                 
                 <motion.div 
                   className="resume-card-item"
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.1 }}
@@ -405,13 +394,13 @@ export default function App() {
         </div>
       </section>
 
-      {/* PROJECTS SECTION: Table directory with Framer Motion cursor follow popups */}
-      <section className="section-layout section-bg-abyss" id="projects-section">
+      {/* PROJECTS SECTION: Table directory with Framer Motion cursor follow popovers */}
+      <section className="section-layout" id="projects-section">
         <div className="container">
           
           <div className="section-title-center">
             <span className="section-badge-pre">03 / Portfolio</span>
-            <h2 className="section-heading-centered">Archive Directory<span className="accent-dot">.</span></h2>
+            <h2 className="section-heading-centered">Archive Directory</h2>
             <p className="section-tagline-center">A comprehensive directory of my engineered applications, software systems, and AI modules.</p>
           </div>
 
@@ -425,7 +414,7 @@ export default function App() {
             </div>
 
             <div className="directory-table">
-              {/* Scope Column completely excluded */}
+              {/* Clean 3-column table (Scope column excluded) */}
               <div className="directory-row header-row">
                 <div className="dir-col col-num">No.</div>
                 <div className="dir-col col-title">Project Title</div>
@@ -442,8 +431,8 @@ export default function App() {
                 >
                   <div className="dir-col col-num">{project.num}</div>
                   
-                  {/* Styled uniquely in serif with cloud coloring */}
-                  <div className="dir-col col-title" style={{ fontFamily: 'var(--font-serif)', fontSize: '22px', fontWeight: 300, color: 'var(--color-cloud)' }}>
+                  {/* Title styled in Georgia serif style */}
+                  <div className="dir-col col-title" style={{ fontFamily: 'var(--font-serif)', fontSize: '20px', fontWeight: 400 }}>
                     {project.title}
                   </div>
                   
@@ -452,7 +441,7 @@ export default function App() {
               ))}
             </div>
 
-            {/* Framer Motion GPU-accelerated Cursor follow action badge */}
+            {/* Framer Motion GPU-accelerated Cursor follow action dot */}
             <motion.div
               className="hover-circle-badge"
               style={{
@@ -466,12 +455,12 @@ export default function App() {
                 opacity: hoveredProject ? 1 : 0,
                 scale: hoveredProject ? 1 : 0.6
               }}
-              transition={{ duration: 0.2 }}
+              transition={{ duration: 0.15 }}
             >
-              <span>CODE ↗</span>
+              <span>VIEW ↗</span>
             </motion.div>
 
-            {/* Framer Motion GPU-accelerated Cursor follow Popover popup */}
+            {/* Framer Motion GPU-accelerated Cursor follow Popover card */}
             <motion.div
               className="hover-preview-card"
               style={{
@@ -481,9 +470,8 @@ export default function App() {
                 pointerEvents: 'none',
                 zIndex: 9,
                 transform: 'translate(40px, -50%)',
-                // Styled uniquely with cyan highlight and glowing shadow if AI Exam Evaluation is hovered
-                borderColor: hoveredProject?.title === 'AI Exam Evaluation' ? 'var(--color-cyan-signal)' : 'rgba(255, 255, 255, 0.05)',
-                boxShadow: hoveredProject?.title === 'AI Exam Evaluation' ? 'rgba(0, 179, 221, 0.2) 0px 0px 24px 0px' : 'var(--shadow-lg)'
+                // Dusk Violet accent frame if the AI Exam Evaluation project is hovered
+                borderColor: hoveredProject?.title === 'AI Exam Evaluation' ? 'var(--color-dusk-violet)' : 'var(--color-ash-border)'
               }}
               animate={{
                 opacity: hoveredProject ? 1 : 0,
@@ -491,16 +479,16 @@ export default function App() {
                 x: 40,
                 y: -50
               }}
-              transition={{ duration: 0.2 }}
+              transition={{ duration: 0.15 }}
             >
               <h3>{hoveredProject?.title || 'Project'}</h3>
               
-              {/* Technology details shown inside popover */}
-              <p style={{ fontWeight: '700', fontSize: '11px', color: hoveredProject?.title === 'AI Exam Evaluation' ? 'var(--color-cyan-signal)' : 'var(--color-iris-gleam)', textTransform: 'uppercase', fontFamily: 'var(--font-mono)' }}>
+              {/* Tech details rendered inside the popover */}
+              <p style={{ fontWeight: '700', fontSize: '11px', color: 'var(--color-pale-mist)', textTransform: 'uppercase', fontFamily: 'var(--font-sans)', marginBottom: '8px' }}>
                 {hoveredProject?.scope}
               </p>
               
-              <p style={{ marginTop: '8px', opacity: 0.85 }}>
+              <p>
                 {hoveredProject?.desc}
               </p>
             </motion.div>
@@ -517,7 +505,7 @@ export default function App() {
           <div className="contact-text-col">
             <span className="section-badge-pre">04 / Connect</span>
             
-            <h2 className="section-heading">Simplify your <i>advisory</i>.</h2>
+            <h2 className="section-heading">Simplify your Advisory.</h2>
             <p className="contact-sub">Feel free to reach out for internship inquiries, project collaborations, or developer networking.</p>
 
             <div className="contact-info-list">
@@ -598,11 +586,11 @@ export default function App() {
               </div>
 
               <div className="form-status">
-                {formStatus === 'loading' && <div style={{ color: 'var(--color-fog)', display: 'flex', gap: '8px' }}><i className="bi bi-arrow-repeat spin"></i> Transmitting...</div>}
-                {formStatus === 'success' && <div style={{ color: 'var(--color-iris-gleam)' }}><i className="bi bi-check-circle-fill"></i> Delivery successful. Thank you!</div>}
+                {formStatus === 'loading' && <div style={{ color: 'var(--color-pale-mist)', display: 'flex', gap: '8px' }}><i className="bi bi-arrow-repeat spin"></i> Transmitting...</div>}
+                {formStatus === 'success' && <div style={{ color: 'var(--color-ghost-white)' }}><i className="bi bi-check-circle-fill"></i> Delivery successful. Thank you!</div>}
               </div>
 
-              <button type="submit" className="btn-primary-blue-pill" style={{ border: 'none', alignSelf: 'flex-start' }}>
+              <button type="submit" className="btn-primary-blue-pill" style={{ color: 'var(--color-void-black)', border: 'none', alignSelf: 'flex-start' }}>
                 Send Message
               </button>
             </form>
@@ -615,7 +603,7 @@ export default function App() {
       <footer className="unfold-footer">
         <div className="container footer-content-wrap">
           <div className="footer-details-row">
-            <h3 className="footer-logo">Rajath O S<span className="accent-dot">.</span></h3>
+            <h3 className="footer-logo">Rajath O S</h3>
             <p className="footer-tagline">Building clean backend architectures and dynamic web experiences.</p>
             <div className="footer-social-links">
               <a href="https://github.com/rajathos07" target="_blank" rel="noopener noreferrer"><i className="bi bi-github"></i></a>
@@ -628,7 +616,7 @@ export default function App() {
           
           <div className="footer-bottom-row">
             <p className="copyright-info">&copy; 2026 Rajath O S. All Rights Reserved.</p>
-            <p className="credits-info">Inspired by <a href="https://themewagon.github.io/unfold/" target="_blank" rel="noopener noreferrer">Unfold</a> &amp; built with React + Framer Motion</p>
+            <p className="credits-info">Inspired by Active Theory &amp; built with React + Framer Motion</p>
           </div>
         </div>
       </footer>
